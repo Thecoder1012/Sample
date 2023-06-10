@@ -3,6 +3,7 @@ import cv2
 import easyocr
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
 class my_dictionary(dict):
  
@@ -11,6 +12,7 @@ class my_dictionary(dict):
  
   def add(self, key, value):
     self[key] = value
+
 
 def main():
     # Streamlit configuration
@@ -31,9 +33,9 @@ def main():
         fps = video.get(cv2.CAP_PROP_FPS)
         width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        output_path = "output_st_4.mp4"  # Replace with the desired output video file path
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # You can use other codecs as well
-        output_video = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
+        # output_path = "./output.mp4"  # Replace with the desired output video file path
+        # fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # You can use other codecs as well
+        # output_video = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
         reader = easyocr.Reader(['en'], gpu=True)
 
@@ -76,19 +78,13 @@ def main():
 
                     frame = cv2.rectangle(frame, (int(top_left[0]), int(top_left[1])), (int(bottom_right[0]), int(bottom_right[1])), (0, 255, 0), 3)
                     frame = cv2.putText(frame, text, (20, spacer), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
-                    frame = cv2.putText(frame, "Water Density: 12345", (20, spacer + 30), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
-                    frame = cv2.putText(frame, "Exported: 12345", (20, spacer + 45), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
-                    frame = cv2.putText(frame, "Misplacement: 122312", (20, spacer + 60), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
-                    # st.image(frame, channels='BGR', caption='Video Frame')
-                    # st.write('Extracted Text:', text)
-                    # st.write('Water Density:', 12345)
-                    # st.write('Exported:', 12345)
-                    # st.write('Misplacement:', 122312)
-                    # st.write(text_dict)
-
+                    frame = cv2.putText(frame, "Displacement: 543,2341 mt", (20, spacer + 30), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
+                    frame = cv2.putText(frame, "Exported: 4356,23 M Tonne", (20, spacer + 45), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
+                    frame = cv2.putText(frame, "Remarks: 874,34 mt", (20, spacer + 60), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
+                    
             else:
                 frame_count = frame_count + 1
-            output_video.write(frame)
+            # output_video.write(frame)
         
         # # Check if there are any two-digit keys in the dictionary
         # has_two_digit_keys = any(key >= 10 for key in my_dict)
@@ -104,7 +100,7 @@ def main():
         for key in max_keys:
             value = text_dict[key]
             key_list.append(key)
-            print("Key:", key, "Value:", value)
+            # print("Key:", key, "Value:", value)
 
         if len(max_keys) == 2:
             # top = max(max_keys, key=text_dict.get)
@@ -124,9 +120,23 @@ def main():
         avg = ((int(top) * top_occr) + (int(low) * low_occr)) / (top_occr + low_occr)
         st.write("Average", avg)
 
-        video.release()
-        output_video.release()
-        cv2.destroyAllWindows()
+        # video.release()
+        # output_video.release()
+        # cv2.destroyAllWindows()
 
+    '''
+    print(video_file)
+    if video_file != None:
+        if not os.path.isfile(output_path):
+            st.error("Video file not found!")
+        else:
+            # Display the video using Streamlit
+            print(output_path)
+            os.system('ffmpeg -y -i {} -vcodec libx264 {}'.format(output_path, 'enc_op.mp4'))
+            op_file = open('enc_op.mp4', 'rb')
+            op_bytes = op_file.read()
+            st.video(op_bytes)
+
+    '''
 if __name__ == '__main__':
     main()
