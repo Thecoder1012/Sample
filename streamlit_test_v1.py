@@ -38,7 +38,7 @@ def main():
 #         fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # You can use other codecs as well
 #         output_video = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
-        reader = easyocr.Reader(['en'], gpu=True)
+        reader = easyocr.Reader(['en'], gpu=False)
 
         frame_count = 0
         text_dict = my_dictionary()
