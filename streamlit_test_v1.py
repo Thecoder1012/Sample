@@ -148,8 +148,8 @@ def main():
                 # ffmpeg.input(input_path).output(output_path, vcodec='libx264', y='1').run()
                 # # os.system('ffmpeg -y -i {} -vcodec libx264 {}'.format(output_path, 'enc_op.mp4'))
                 op_file = open(output_path, 'rb')
-                op_bytes = op_file.read()
-                st.video(op_bytes)
+                # op_bytes = op_file.read()
+                # st.video(op_bytes)
                 st.download_button('Download Processed File', data = op_file)
 
         video.release()
