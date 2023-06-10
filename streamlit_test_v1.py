@@ -4,6 +4,7 @@ import easyocr
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+import ffmpeg
 
 class my_dictionary(dict):
  
@@ -27,7 +28,7 @@ def main():
 
     if video_file is not None:
         # Read video file
-        video = cv2.VideoCapture(video_file.name)
+        video = cv2.VideoCapture(videimport ffmpego_file.name)
         font = cv2.FONT_HERSHEY_SIMPLEX
 
         fps = video.get(cv2.CAP_PROP_FPS)
@@ -45,7 +46,7 @@ def main():
         while video.isOpened():
             ret, frame = video.read()
             if frame_count % 2 == 0:
-                frame_count = frame_count + 1
+                frame_count = frame_cimport ffmpegount + 1
                 spacer = 10
 
                 if not ret:
@@ -132,6 +133,8 @@ def main():
         else:
             # Display the video using Streamlit
             print(output_path)
+            input_path = "enc_op.mp4"
+            ffmpeg.input(input_path).output(output_path, vcodec='libx264', y='1').run()
 #             os.system('ffmpeg -y -i {} -vcodec libx264 {}'.format(output_path, 'enc_op.mp4'))
             op_file = open('enc_op.mp4', 'rb')
             op_bytes = op_file.read()
