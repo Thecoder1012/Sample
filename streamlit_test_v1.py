@@ -150,7 +150,7 @@ def main():
                 op_file = open(output_path, 'rb')
                 # op_bytes = op_file.read()
                 # st.video(op_bytes)
-                st.download_button('Download Processed File', data = op_file.enocde('utf-8'), file_name="result.mp4", mime = "video/mp4")
+                st.download_button('Download Processed File', data = op_file, file_name="result.mp4", mime = "video/mp4")
                 os.remove(output_path)
 
         video.release()
