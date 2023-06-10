@@ -38,14 +38,14 @@ def main():
 #         fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # You can use other codecs as well
 #         output_video = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
-        reader = easyocr.Reader(['en'], gpu=False)
+        reader = easyocr.Reader(['en'], gpu=True)
 
         frame_count = 0
         text_dict = my_dictionary()
         frame_count = 0
         while video.isOpened():
             ret, frame = video.read()
-            if frame_count % 2 == 0:
+            if frame_count % 5 == 0:
                 frame_count = frame_count + 1
                 spacer = 10
 
