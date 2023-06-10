@@ -1,6 +1,6 @@
-easyocr
+easyocr==1.6.2
 opencv-python-headless
 matplotlib
-streamlit
+streamlit==1.22.0
 numpy
 ffmpeg-python
