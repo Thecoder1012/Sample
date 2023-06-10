@@ -149,13 +149,14 @@ def main():
         else:
             # Display the video using Streamlit
             # print(output_path)
-            input_path = output_path
-            output_path = 'enc_op.mp4'
-            ffmpeg.input(input_path).output(output_path, vcodec='libx264', y='1').run()
-            # os.system('ffmpeg -y -i {} -vcodec libx264 {}'.format(output_path, 'enc_op.mp4'))
-            op_file = open(output_path, 'rb')
-            op_bytes = op_file.read()
-            st.video(op_bytes)
+            # input_path = output_path
+            # output_path = 'enc_op.mp4'
+            # ffmpeg.input(input_path).output(output_path, vcodec='libx264', y='1').run()
+            # # os.system('ffmpeg -y -i {} -vcodec libx264 {}'.format(output_path, 'enc_op.mp4'))
+            # op_file = open(output_path, 'rb')
+            # op_bytes = op_file.read()
+            # st.video(op_bytes)
+            st.download_button('Download Processed File', output_video)
 
     
 if __name__ == '__main__':
