@@ -34,9 +34,9 @@ def main():
         fps = video.get(cv2.CAP_PROP_FPS)
         width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        # output_path = "./output.mp4"  # Replace with the desired output video file path
-        # fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # You can use other codecs as well
-        # output_video = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
+        output_path = "./output.mp4"  # Replace with the desired output video file path
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # You can use other codecs as well
+        output_video = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
         reader = easyocr.Reader(['en'], gpu=True)
 
@@ -98,7 +98,7 @@ def main():
 
             else:
                 frame_count = frame_count + 1
-            # output_video.write(frame)
+            output_video.write(frame)
         
         # # Check if there are any two-digit keys in the dictionary
         # has_two_digit_keys = any(key >= 10 for key in my_dict)
@@ -137,25 +137,25 @@ def main():
         st.write(int(low), " occured: ",int(low_occr)," times" )
         st.write("Average", avg)
 
-        # video.release()
-        # output_video.release()
-        # cv2.destroyAllWindows()
+        video.release()
+        output_video.release()
+        cv2.destroyAllWindows()
 
     
 #     print(video_file)
-#     if video_file != None:
-#         if not os.path.isfile(output_path):
-#             st.error("Video file not found!")
-#         else:
-#             # Display the video using Streamlit
-#             # print(output_path)
+    if video_file != None:
+        if not os.path.isfile(output_path):
+            st.error("Video file not found!")
+        else:
+            # Display the video using Streamlit
+            # print(output_path)
 #             output = 'enc_op.mp4'
 #             inp = output_path
 #             ffmpeg.input(inp).output(output, vcodec='libx264', y='1').run()
 #             os.system('ffmpeg -y -i {} -vcodec libx264 {}'.format(output_path, 'enc_op.mp4'))
-#             op_file = open('enc_op.mp4', 'rb')
-#             op_bytes = op_file.read()
-#             st.video(op_bytes)
+            op_file = open(output_path, 'rb')
+            op_bytes = op_file.read()
+            st.video(op_bytes)
 
     
 if __name__ == '__main__':
