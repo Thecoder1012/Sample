@@ -133,8 +133,8 @@ def main():
         st.write("top = ",int(top))
         st.write("low = ",int(low))
         avg = ((int(top) * top_occr) + (int(low) * low_occr)) / (top_occr + low_occr)
-        st.write(int(top), " occured: ",int(top_occr * 4)," times" )
-        st.write(int(low), " occured: ",int(low_occr * 4)," times" )
+        st.write(int(top), " occured: ",int(top_occr)," times" )
+        st.write(int(low), " occured: ",int(low_occr)," times" )
         st.write("Average", avg)
 
         # video.release()
