@@ -46,7 +46,7 @@ def main():
         while video.isOpened():
             ret, frame = video.read()
             if frame_count % 2 == 0:
-                frame_count = frame_cimport ffmpegount + 1
+                frame_count = frame_count + 1
                 spacer = 10
 
                 if not ret:
