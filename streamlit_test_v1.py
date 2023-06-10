@@ -28,7 +28,7 @@ def main():
 
     if video_file is not None:
         # Read video file
-        video = cv2.VideoCapture(videimport ffmpego_file.name)
+        video = cv2.VideoCapture(video_file.name)
         font = cv2.FONT_HERSHEY_SIMPLEX
 
         fps = video.get(cv2.CAP_PROP_FPS)
