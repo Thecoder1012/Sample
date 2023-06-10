@@ -137,6 +137,11 @@ def main():
         st.write(int(low), " occured: ",int(low_occr)," times" )
         st.write("Average", avg)
 
+
+        video.release()
+        output_video.release()
+#         cv2.destroyAllWindows()
+
         if video_file != None:
             if not os.path.isfile(output_path):
                 st.error("Video file not found!")
@@ -153,9 +158,6 @@ def main():
                 st.download_button('Download Processed File', data = op_file)
 #                 os.remove(output_path)
 
-        video.release()
-        output_video.release()
-#         cv2.destroyAllWindows()
 
     
 #     print(video_file)
