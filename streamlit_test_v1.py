@@ -45,7 +45,7 @@ def main():
         frame_count = 0
         while video.isOpened():
             ret, frame = video.read()
-            if frame_count % 3 == 0:
+            if frame_count % 5 == 0:
                 text1 = ''
                 frame_count = frame_count + 1
                 spacer = 10
