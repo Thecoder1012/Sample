@@ -34,9 +34,9 @@ def main():
         fps = video.get(cv2.CAP_PROP_FPS)
         width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
-#         output_path = "./output.mp4"  # Replace with the desired output video file path
-#         fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # You can use other codecs as well
-#         output_video = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
+        # output_path = "./output.mp4"  # Replace with the desired output video file path
+        # fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # You can use other codecs as well
+        # output_video = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
         reader = easyocr.Reader(['en'], gpu=True)
 
@@ -45,7 +45,8 @@ def main():
         frame_count = 0
         while video.isOpened():
             ret, frame = video.read()
-            if frame_count % 5 == 0:
+            if frame_count % 2 == 0:
+                text1 = ''
                 frame_count = frame_count + 1
                 spacer = 10
 
@@ -63,14 +64,16 @@ def main():
                     bottom_right = tuple(detection[0][2])
 
                     if detection[1].isdigit():
-                        text = detection[1]
+                        if int(detection[1]) != 0:
+                            text = detection[1]
+                            print(text)
 
                         if text in text_dict:
                             text_dict[text] += 1
                         else:
                             text_dict[text] = 1
                     else:
-                        text = 'Detecting..'
+                        text1 = 'Detecting..'
 
                     if text_dict == {}:
                         avg_list = 'Detecting...'
@@ -78,14 +81,24 @@ def main():
                         avg_list = 'Detecting...'
 
                     frame = cv2.rectangle(frame, (int(top_left[0]), int(top_left[1])), (int(bottom_right[0]), int(bottom_right[1])), (0, 255, 0), 3)
-                    frame = cv2.putText(frame, text, (20, spacer), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
+                    if text1 == '':
+                        frame = cv2.putText(frame, text, (20, spacer), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
+                    elif text1 == 'Detecting..':
+                        frame = cv2.putText(frame, text1, (20, spacer), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
                     frame = cv2.putText(frame, "Displacement: 543,2341 mt", (20, spacer + 30), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
                     frame = cv2.putText(frame, "Exported: 4356,23 M Tonne", (20, spacer + 45), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
                     frame = cv2.putText(frame, "Remarks: 874,34 mt", (20, spacer + 60), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
                     
+                    # st.image(frame, channels='BGR', caption='Video Frame')
+                    # st.write('Extracted Text:', text)
+                    # st.write('Water Density:', 12345)
+                    # st.write('Exported:', 12345)
+                    # st.write('Misplacement:', 122312)
+                    # st.write(text_dict)
+
             else:
                 frame_count = frame_count + 1
-#             output_video.write(frame)
+            # output_video.write(frame)
         
         # # Check if there are any two-digit keys in the dictionary
         # has_two_digit_keys = any(key >= 10 for key in my_dict)
@@ -117,13 +130,16 @@ def main():
         top_occr = int(text_dict[top])
         low_occr = int(text_dict[low])
 
-        st.write("top = ",int(top), " low = ",int(low))
+        st.write("top = ",int(top))
+        st.write("low = ",int(low))
         avg = ((int(top) * top_occr) + (int(low) * low_occr)) / (top_occr + low_occr)
+        st.write(int(top), " occured: ",int(top_occr)," times" )
+        st.write(int(low), " occured: ",int(low_occr)," times" )
         st.write("Average", avg)
 
-#         video.release()
-#         output_video.release()
-#         cv2.destroyAllWindows()
+        # video.release()
+        # output_video.release()
+        # cv2.destroyAllWindows()
 
     
 #     print(video_file)
