@@ -132,7 +132,7 @@ def main():
         else:
             # Display the video using Streamlit
             print(output_path)
-            os.system('ffmpeg -y -i {} -vcodec libx264 {}'.format(output_path, 'enc_op.mp4'))
+#             os.system('ffmpeg -y -i {} -vcodec libx264 {}'.format(output_path, 'enc_op.mp4'))
             op_file = open('enc_op.mp4', 'rb')
             op_bytes = op_file.read()
             st.video(op_bytes)
