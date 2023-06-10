@@ -139,7 +139,7 @@ def main():
 
         video.release()
         output_video.release()
-        cv2.destroyAllWindows()
+#         cv2.destroyAllWindows()
 
     
 #     print(video_file)
