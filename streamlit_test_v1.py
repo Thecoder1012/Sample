@@ -24,7 +24,8 @@ def main():
     st.write('Upload a video file to get the Survay')
 
     # Video file upload
-    video_file = st.file_uploader('', type=['mp4', 'avi'])
+    # video_file = st.file_uploader('', type=['mp4', 'avi', 'webm', 'mpeg'])
+    video_file = st.file_uploader('')
 
     if video_file is not None:
         # Read video filee
