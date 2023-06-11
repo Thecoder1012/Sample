@@ -30,6 +30,7 @@ def main():
         # Read video filee
         st.write("hey")
         video = cv2.VideoCapture(video_file.name)
+        st.write("tum itna jo")
         font = cv2.FONT_HERSHEY_SIMPLEX
 
         fps = video.get(cv2.CAP_PROP_FPS)
