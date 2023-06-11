@@ -89,7 +89,7 @@ def main():
                     frame = cv2.putText(frame, "Exported: 4356,23 M Tonne", (20, spacer + 45), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
                     frame = cv2.putText(frame, "Remarks: 874,34 mt", (20, spacer + 60), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
                     
-                    # st.image(frame, channels='BGR', caption='Video Frame')
+                    st.image(frame, channels='BGR', caption='Video Frame')
                     # st.write('Extracted Text:', text)
                     # st.write('Water Density:', 12345)
                     # st.write('Exported:', 12345)
