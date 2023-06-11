@@ -28,6 +28,7 @@ def main():
 
     if video_file is not None:
         # Read video filee
+        st.write("hey")
         video = cv2.VideoCapture(video_file.name)
         font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -45,6 +46,7 @@ def main():
         frame_count = 0
         while video.isOpened():
             ret, frame = video.read()
+            st.write("reading frame\n")
             if frame_count % 10 == 0:
                 text1 = ''
                 frame_count = frame_count + 1
