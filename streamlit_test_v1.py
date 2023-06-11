@@ -4,7 +4,6 @@ import easyocr
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import ffmpegcv
 # import ffmpeg
 
 class my_dictionary(dict):
