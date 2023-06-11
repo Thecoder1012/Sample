@@ -32,14 +32,14 @@ def main():
         video = cv2.VideoCapture(video_file.name)
         st.write("tum itna jo")
         font = cv2.FONT_HERSHEY_SIMPLEX
-
+        print("Look: ",video.isOpened())
         fps = video.get(cv2.CAP_PROP_FPS)
         width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
         output_path = "./output.mp4"  # Replace with the desired output video file path
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # You can use other codecs as well
         output_video = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
-        print("Look: ",video.isOpened())
+        
         reader = easyocr.Reader(['en'], gpu=True)
 
         frame_count = 0
