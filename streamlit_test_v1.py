@@ -32,7 +32,7 @@ def main():
         video = cv2.VideoCapture(video_file.name)
         st.write("tum itna jo")
         font = cv2.FONT_HERSHEY_SIMPLEX
-        print("Look: ",video.isOpened())
+        print("Look:")
         fps = video.get(cv2.CAP_PROP_FPS)
         width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
