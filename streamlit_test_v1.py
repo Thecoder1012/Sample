@@ -45,6 +45,7 @@ def main():
         frame_count = 0
         text_dict = my_dictionary()
         frame_count = 0
+        print("Look: ",video.isOpened())
         while video.isOpened():
             ret, frame = video.read()
             st.write("reading frame\n")
