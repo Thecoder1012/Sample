@@ -27,7 +27,7 @@ def main():
     video_file = st.file_uploader('', type=['mp4', 'avi'])
 
     if video_file is not None:
-        # Read video file
+        # Read video filee
         video = cv2.VideoCapture(video_file.name)
         font = cv2.FONT_HERSHEY_SIMPLEX
 
