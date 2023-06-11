@@ -39,13 +39,13 @@ def main():
         output_path = "./output.mp4"  # Replace with the desired output video file path
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # You can use other codecs as well
         output_video = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
-
+        print("Look: ",video.isOpened())
         reader = easyocr.Reader(['en'], gpu=True)
 
         frame_count = 0
         text_dict = my_dictionary()
         frame_count = 0
-        print("Look: ",video.isOpened())
+        
         while video.isOpened():
             ret, frame = video.read()
             st.write("reading frame\n")
